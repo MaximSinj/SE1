@@ -15,7 +15,7 @@ public class GermanTranslator implements Translator {
 			result = zahlen[number - 1];
 
 		} catch (ArrayIndexOutOfBoundsException e) {
-			result = "Übersetzung der Zahl" + number + "nicht möglich! (V" + Translator.version + ")";
+			result = "Übersetzung der Zahl " + number + " nicht möglich! (V" + Translator.version + ")";
 		}
 
 		return result;

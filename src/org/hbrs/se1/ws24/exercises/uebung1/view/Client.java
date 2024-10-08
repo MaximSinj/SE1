@@ -10,11 +10,11 @@ public class Client {
 		 * (auch bezeichnet als CLI, Terminal)
 		 *
 		 */
-		 void display( int aNumber ) {
+		public void display( int aNumber ) {
 			 Translator translator = Factory.createGermanTranslator(); //Erstellung eines GermanTranslators
 			 String result = translator.translateNumber(aNumber);
 			 System.out.println("Das Ergebnis der Berechnung: " +
-					 "[das Ergebnis an dieser Stelle]");
+					 result);
 		 }
 }
 
