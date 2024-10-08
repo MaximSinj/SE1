@@ -8,17 +8,9 @@ public class GermanTranslator implements Translator {
 	 * Methode zur Übersetzung einer Zahl in eine String-Repraesentation
 	 */
 	public String translateNumber( int number ) {
-		String result = "";
-		String[] zahlen = {"eins", "zwei","drei","vier","fünf","sechs","sieben","acht","neun","zehn"};
+		// [ihr Source Code aus Übung 1-2]
 
-		try {
-			result = zahlen[number - 1];
-
-		} catch (ArrayIndexOutOfBoundsException e) {
-			result = "Übersetzung der Zahl" + number + "nicht möglich! (V" + Translator.version + ")";
-		}
-
-		return result;
+		return "null";
 	}
 
 	/**
