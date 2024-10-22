@@ -64,6 +64,10 @@ public class Container {
             throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "Es ist keine Strategie gesetzt!");
     }
 
+    public void setPersistenceStrategy(PersistenceStrategy<Member> persistenceStrategy){
+        this.persistenceStrategy=persistenceStrategy;
+    }
+
     //CR3
     public List<Member> getCurrentList(){
         return MemberList;
