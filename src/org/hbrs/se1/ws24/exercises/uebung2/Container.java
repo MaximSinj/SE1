@@ -4,6 +4,7 @@ import org.hbrs.se1.ws24.exercises.uebung3.persistence.PersistenceStrategy;
 
 import java.util.ArrayList;
 import java.lang.*;
+import java.util.List;
 
 public class Container {
 
@@ -63,5 +64,9 @@ public class Container {
             throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "Es ist keine Strategie gesetzt!");
     }
 
+    //CR3
+    public List<Member> getCurrentList(){
+        return MemberList;
+    }
 }
 
