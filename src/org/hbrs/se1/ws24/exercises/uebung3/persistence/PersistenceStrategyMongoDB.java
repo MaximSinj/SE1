@@ -5,6 +5,16 @@ import java.util.List;
 public class PersistenceStrategyMongoDB<E> implements PersistenceStrategy<E> {
 
     @Override
+    public void openConnection() {
+        throw new UnsupportedOperationException("Not implemented!");
+    }
+
+    @Override
+    public void closeConnection() {
+        throw new UnsupportedOperationException("Not implemented!");
+    }
+
+    @Override
     public void save(List<E> member) {
         throw new UnsupportedOperationException("Not implemented!");
     }

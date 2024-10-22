@@ -1,5 +1,5 @@
 package org.hbrs.se1.ws24.exercises.uebung3.persistence;
-import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
@@ -15,6 +15,13 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     }
 
     @Override
+    public void openConnection(){
+    }
+
+    @Override
+    public void closeConnection(){
+    }
+    @Override
     /**
      * Method for saving a list of Member-objects to a disk (HDD)
      * Look-up in Google for further help! Good source:
@@ -22,7 +29,8 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      * (Last Access: Oct, 15th 2024)
      */
     public void save(List<E> member) throws PersistenceException  {
-
+        FileOutputStream fileOutputStream;
+        ObjectOutputStream objectOutputStream;
     }
 
     @Override

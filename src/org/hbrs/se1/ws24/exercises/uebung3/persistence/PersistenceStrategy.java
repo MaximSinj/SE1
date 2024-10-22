@@ -10,6 +10,25 @@ import java.util.List;
  *
  */
 public interface PersistenceStrategy<E> {
+    /**
+     * Method for saving a list of Member-objects to a disk (HDD)
+     * Look-up in Google for further help! Good source:
+     * https://www.digitalocean.com/community/tutorials/objectoutputstream-java-write-object-file
+     * (Last Access: Oct, 15th 2024)
+     */
+
+
+    void openConnection();
+
+    void closeConnection();
+
+    /**
+     * Method for saving a list of Member-objects to a disk (HDD)
+     * Look-up in Google for further help! Good source:
+     * https://www.digitalocean.com/community/tutorials/objectoutputstream-java-write-object-file
+     * (Last Access: Oct, 15th 2024)
+     */
+
     public void save(List<E> member) throws PersistenceException;
     public List<E> load() throws PersistenceException;
 }

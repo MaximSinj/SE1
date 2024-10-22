@@ -10,7 +10,7 @@ public class MemberTest {
 
     @Test
     void test() throws ContainerException {
-        Container c1 = new Container();
+        Container c1 = Container.getInstance(); //new Container();
         ConcreteMember Hans = new ConcreteMember(3);
         ConcreteMember Dieter = new ConcreteMember(8);
         ConcreteMember Walter = new ConcreteMember(17);

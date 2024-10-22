@@ -1,5 +1,9 @@
 package org.hbrs.se1.ws24.exercises.uebung2;
-public interface Member {
+import java.io.Serializable;
+
+import java.io.Serializable;
+
+public interface Member extends Serializable {
 
     /**
      * Die ID ist über einen Konstruktor einer Klasse, welches dieses Interface implementiert,
