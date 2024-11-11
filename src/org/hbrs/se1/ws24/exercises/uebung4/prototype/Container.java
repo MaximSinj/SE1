@@ -1,5 +1,7 @@
 package org.hbrs.se1.ws24.exercises.uebung4.prototype;
 
+import org.hbrs.se1.ws24.exercises.uebung3.persistence.PersistenceStrategy;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,22 +24,22 @@ import java.util.Scanner;
  * Entwurfsentscheidung: Die wichtigsten Zuständigkeiten (responsibilities)
  * sind in einer Klasse, d.h. Container?
  * ToDo: Wie bewerten Sie diese Entscheidung? Was wäre ein sinnvolle Aufteilung (F2, F6)
- * 
+ *
  */
 
 public class Container {
-	 
+
 	// Interne ArrayList zur Abspeicherung der Objekte vom Type UserStory
 	private List<UserStory> liste = null;
-	
+
 	// Statische Klassen-Variable, um die Referenz
 	// auf das einzige Container-Objekt abzuspeichern
 	// Diese Variante sei thread-safe, so hat Hr. P. es gehört... stimmt das?
 	// Todo: Bewertung Thread-Safeness (F1)
 	// Todo: Bewertung Speicherbedarf (F1)
 	private static Container instance = new Container();
-	
-	// URL der Datei, in der die Objekte gespeichert werden 
+
+	// URL der Datei, in der die Objekte gespeichert werden
 	final static String LOCATION = "allStories.ser";
 
 	/**
@@ -47,7 +49,9 @@ public class Container {
 	public static Container getInstance() {
 		return instance;
 	}
-	
+
+	private PersistenceStrategy<UserStory> persistenceStrategy;
+
 	/**
 	 * Vorschriftsmäßiges Ueberschreiben des Konstruktors (private) gemaess Singleton-Pattern (oder?)
 	 * Nun auf private gesetzt! Vorher ohne Access Qualifier (--> dann package-private)
@@ -55,17 +59,17 @@ public class Container {
 	public Container(){
 		liste = new ArrayList<UserStory>();
 	}
-	
+
 	/**
-	 * Start-Methoden zum Starten des Programms 
+	 * Start-Methoden zum Starten des Programms
 	 * (hier koennen ggf. weitere Initialisierungsarbeiten gemacht werden spaeter)
 	 */
 	public static void main (String[] args) throws Exception {
 		// ToDo: Bewertung Exception-Handling (F3, F7)
 		Container con = Container.getInstance();
-		con.startEingabe(); 
+		con.startEingabe();
 	}
-	
+
 	/*
 	 * Diese Methode realisiert eine Eingabe ueber einen Scanner
 	 * Alle Exceptions werden an den aufrufenden Context (hier: main) weitergegeben (throws)
@@ -73,7 +77,7 @@ public class Container {
 	 */
 	public void startEingabe() throws ContainerException, Exception {
 		String strInput = null;
-		
+
 		// Initialisierung des Eingabe-View
 		// ToDo: Funktionsweise des Scanners erklären (F3)
 		Scanner scanner = new Scanner( System.in );
@@ -84,7 +88,7 @@ public class Container {
 
 			System.out.print( "> "  );
 			strInput = scanner.nextLine();
-		
+
 			// Extrahiert ein Array aus der Eingabe
 			String[] strings = strInput.split(" ");
 
@@ -101,7 +105,7 @@ public class Container {
 				// Daten einlesen ... (Ihre Aufgabe!)
 				// this.addUserStory( new UserStory( data ) ) um das Objekt in die Liste einzufügen.
 			}
-								
+
 			if (  strings[0].equals("store")  ) {
 				// Beispiel-Code zum Anlegen und Speichern einer UserStory:
 				UserStory userStory = new UserStory();
@@ -137,7 +141,7 @@ public class Container {
 	/*
 	 * Methode zum Speichern der Liste. Es wird die komplette Liste
 	 * inklusive ihrer gespeicherten UserStory-Objekte gespeichert.
-	 * 
+	 *
 	 */
 	public void store() throws ContainerException {
 		ObjectOutputStream oos = null;
@@ -145,36 +149,36 @@ public class Container {
 		try {
 			fos = new FileOutputStream( Container.LOCATION );
 			oos = new ObjectOutputStream(fos);
-			
+
 			oos.writeObject( this.liste );
 			System.out.println( this.size() + " UserStory wurden erfolgreich gespeichert!");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
-		  //  Delegation in den aufrufendem Context
-		  // (Anwendung Pattern "Chain Of Responsibility)
-		  throw new ContainerException("Fehler beim Abspeichern");
+			//  Delegation in den aufrufendem Context
+			// (Anwendung Pattern "Chain Of Responsibility)
+			throw new ContainerException("Fehler beim Abspeichern");
 		}
 	}
 
 	/*
 	 * Methode zum Laden der Liste. Es wird die komplette Liste
 	 * inklusive ihrer gespeicherten UserStory-Objekte geladen.
-	 * 
+	 *
 	 */
 	public void load() {
 		ObjectInputStream ois = null;
 		FileInputStream fis = null;
 		try {
-		  fis = new FileInputStream( Container.LOCATION );
-		  ois = new ObjectInputStream(fis);
-		  
-		  // Auslesen der Liste
-		  Object obj = ois.readObject();
-		  if (obj instanceof List<?>) {
-			  this.liste = (List) obj;
-		  }
-		  System.out.println("Es wurden " + this.size() + " UserStory erfolgreich reingeladen!");
+			fis = new FileInputStream( Container.LOCATION );
+			ois = new ObjectInputStream(fis);
+
+			// Auslesen der Liste
+			Object obj = ois.readObject();
+			if (obj instanceof List<?>) {
+				this.liste = (List) obj;
+			}
+			System.out.println("Es wurden " + this.size() + " UserStory erfolgreich reingeladen!");
 		}
 		catch (IOException e) {
 			System.out.println("LOG (für Admin): Datei konnte nicht gefunden werden!");
@@ -183,8 +187,8 @@ public class Container {
 			System.out.println("LOG (für Admin): Liste konnte nicht extrahiert werden (ClassNotFound)!");
 		}
 		finally {
-		  if (ois != null) try { ois.close(); } catch (IOException e) {}
-		  if (fis != null) try { fis.close(); } catch (IOException e) {}
+			if (ois != null) try { ois.close(); } catch (IOException e) {}
+			if (fis != null) try { fis.close(); } catch (IOException e) {}
 		}
 	}
 

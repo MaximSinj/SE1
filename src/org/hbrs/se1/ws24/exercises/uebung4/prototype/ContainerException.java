@@ -1,10 +1,10 @@
 package org.hbrs.se1.ws24.exercises.uebung4.prototype;
 
 public class ContainerException extends Exception {
-	
+
 	private String modus;
 	private Integer id;
-	
+
 	public ContainerException( String s ) {
 		super ( s );
 	}
@@ -19,7 +19,7 @@ public class ContainerException extends Exception {
 		} else {
 			System.out.println(this.getMessage());
 		}
-	} 
+	}
 
 	public void addID(Integer id) {
 		this.id = id;
