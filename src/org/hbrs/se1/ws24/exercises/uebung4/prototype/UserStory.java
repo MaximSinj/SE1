@@ -1,5 +1,8 @@
 package org.hbrs.se1.ws24.exercises.uebung4.prototype;
-    public class UserStory {
+import org.hbrs.se1.ws24.exercises.uebung2.Member;
+import org.hbrs.se1.ws24.solutions.*;
+
+public class UserStory {
         // ToDo: Sind die Attribute der Klasse UserStory vollständig? Wie sieht es mit den
         //  Sichtbarkeiten aus? (F4)
 
@@ -49,7 +52,7 @@ package org.hbrs.se1.ws24.exercises.uebung4.prototype;
             this.id = id;
         }
 
-    }
+}
 
 
 
